@@ -8,10 +8,18 @@ import splash from "@/assets/images/splash.png";
 
 const Splash = () => {
   return (
-    <ImageBackground style={{ width: "100%", height: "100%" }} source={splash}>
+    <ImageBackground style={styles.background} source={splash}>
       <View style={styles.container}>
-        <Image style={styles.logo} source={require('../../assets/images/logo.png')} />
-        <Text style={styles.text}>100k+ Premium recepie</Text>
+        <Image
+          style={styles.logo}
+          source={require("../../assets/images/logo.png")}
+        />
+        <Text style={styles.title}>100k+ Premium recepie</Text>
+      </View>
+      <View style={styles.container}>
+        <Text style={styles.bigTitle}>Get </Text>
+        <Text style={styles.bigTitle}>Cooking</Text>
+        <Text style={styles.subTitle}>Simple way to find tasty recepie</Text>
         <Button>Start Cooking</Button>
       </View>
     </ImageBackground>

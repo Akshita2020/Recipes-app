@@ -26,5 +26,5 @@
     "app.tsx",
     "app/_layout.tsx",
     "app/index.tsx"
-, "app/splash/index.tsx"  ]
+, "app/Splash/index.tsx"  ]
 }

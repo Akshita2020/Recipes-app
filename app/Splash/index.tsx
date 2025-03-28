@@ -1,12 +1,15 @@
 import React from "react";
-import { View, Text, ImageBackground,Image } from "react-native";
+import { View, Text, ImageBackground, Image } from "react-native";
 import styles from "./styles";
 import Button from "@/components/Button";
+import { useRouter } from "expo-router";
+
 // import splash from "../../assets/images/splash.png";
 // import splash from './splash.png';
 import splash from "@/assets/images/splash.png";
 
 const Splash = () => {
+  const router = useRouter();
   return (
     <ImageBackground style={styles.background} source={splash}>
       <View style={styles.container}>
@@ -20,7 +23,7 @@ const Splash = () => {
         <Text style={styles.bigTitle}>Get </Text>
         <Text style={styles.bigTitle}>Cooking</Text>
         <Text style={styles.subTitle}>Simple way to find tasty recepie</Text>
-        <Button>Start Cooking</Button>
+        <Button onPress={()=>router.push('./Home')}>Start Cooking</Button>
       </View>
     </ImageBackground>
   );

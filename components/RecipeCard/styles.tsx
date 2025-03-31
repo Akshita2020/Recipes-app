@@ -44,9 +44,10 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 10,
     marginTop: 46,
+    marginRight: 16,
     backgroundColor: colors.white,
     padding: 10,
-    marginVertical: 16,
+    marginBottom: 32,
     width: width * 0.7,
     //IOS
     shadowColor: "#000",

@@ -10,11 +10,12 @@ interface RecipeProps {
   servings: number;
   rating: number;
   time: string;
+  style?: object;
 }
 
-const RecipeCard = ({ title, image, author, rating, time }: RecipeProps) => {
+const RecipeCard = ({ title, image, author, rating,time,style }: RecipeProps) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,style]}>
       <View style={styles.row}>
         <View style={{ flex: 1 }}>
           <Text numberOfLines={1} style={styles.title}>

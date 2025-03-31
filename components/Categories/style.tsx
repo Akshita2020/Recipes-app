@@ -1,22 +1,25 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from "react-native";
+import colors from "@/constants/colors";
 
 const styles = StyleSheet.create({
   item: {
     fontSize: 12,
     // color: 'rgba(0,0,0,0.5)',
-    color: 'bold',
-    paddingVertical: 2,
+    color: colors.green,
+    fontWeight: "bold",
+    paddingHorizontal: 10,
+    padding: 8,
   },
   selectedItem: {
-    color: '#000000',
+    color: colors.white,
   },
   itemContainer: {
-    marginVertical: 14,
+    marginVertical: 8,
     marginRight: 17,
   },
   selectedItemContainer: {
-    borderBottomColor: '4681A3',
-    borderBottomWidth: 1,
+    backgroundColor: colors.green,
+    borderRadius: 10,
   },
 });
 

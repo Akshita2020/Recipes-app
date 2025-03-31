@@ -7,13 +7,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 10,
     borderColor: colors.lightGrey,
-    borderWidth: 1, 
+    borderWidth: 1,
     padding: 10,
     marginVertical: 16,
   },
   input: {
     color: colors.black,
     fontSize: 14,
+    flex: 1,
   },
   icon: {
     width: 16,

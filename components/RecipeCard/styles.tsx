@@ -19,6 +19,12 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between",
+    marginTop: 8,
+  },
+  footer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
   authorImage: {
     width: 25,

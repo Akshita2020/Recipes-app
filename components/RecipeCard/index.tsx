@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View, Image } from "react-native";
 import styles from "./styles";
+import Rating from "../Rating";
 
 interface RecipeProps {
   title: string;
@@ -15,9 +16,13 @@ const RecipeCard = ({ title, image, author, rating, time }: RecipeProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.row}>
-        <Text numberOfLines={1} style={styles.title}>
-          {title}
-        </Text>
+        <View style={{ flex: 1 }}>
+          <Text numberOfLines={1} style={styles.title}>
+            {title}
+          </Text>
+          <Rating rating={4.5} />
+        </View>
+
         <Image
           style={styles.image}
           source={{
@@ -25,12 +30,13 @@ const RecipeCard = ({ title, image, author, rating, time }: RecipeProps) => {
           }}
         />
       </View>
-      <View style={[styles.row, { justifyContent: "space-between" }]}>
+
+      <View style={styles.row}>
         <View style={styles.row}>
           <Image style={styles.authorImage} source={{ uri: author?.image }} />
           <Text style={styles.footerText}>{author?.name}</Text>
         </View>
-        <View style={styles.row}>
+        <View style={styles.footer}>
           <Image
             style={styles.timerIcon}
             source={require("../../assets/images/timer.png")}

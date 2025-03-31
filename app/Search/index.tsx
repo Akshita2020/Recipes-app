@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import styles from "./styles";
-import Input from "../../components/input/index";
+import Input from "../../components/Input/index";
 
 const Search = () => {
   return (

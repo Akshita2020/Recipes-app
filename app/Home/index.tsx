@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import styles from "./styles";
 import { useRouter } from "expo-router";
-import Input from "../../components/input/index";
+import Input from "../../components/Input/index";
 import Title from "../../components/Title/index";
 import Categories from "@/components/Categories";
 import RecipeCard from "@/components/RecipeCard";

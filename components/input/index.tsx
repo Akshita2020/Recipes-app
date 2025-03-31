@@ -1,21 +1,32 @@
 import React from "react";
-import { TouchableOpacity, Text, Image } from "react-native";
+import { TextInput, Image, View } from "react-native";
 import styles from "./styles";
+import colors from "@/constants/colors";
 
-interface ButtonProps {
-  children: React.ReactNode;
-  onPress?: () => void;
+interface InputProps {
+  showSearchIcons?: boolean;
+  placeholder?: string;
 }
 
-const Button = ({ children, onPress }: ButtonProps) => {
+const Input = ({
+  showSearchIcons = true,
+  placeholder = "Search recipe",
+}: InputProps) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Text style={styles.text}>{children}</Text>
-      <Image
-        style={styles.icon}
-        source={require("../../assets/images/arrowRight.png")}
+    <View style={styles.inputContainer}>
+      {showSearchIcons ? (
+        <Image
+          style={styles.icon}
+          source={require("../../assets/images/search.png")}
+        />
+      ) : null}
+      <TextInput
+        placeholderTextColor={colors.lightGrey}
+        style={styles.input}
+        placeholder={placeholder}
       />
-    </TouchableOpacity>
+    </View>
   );
 };
-export default React.memo(Button);
+
+export default React.memo(Input);

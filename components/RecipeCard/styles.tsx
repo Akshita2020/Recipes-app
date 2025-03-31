@@ -8,6 +8,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.black,
     fontWeight: "bold",
+    flex: 1,
+  },
+  image: {
+    width: 80,
+    height: 80,
+    borderRadius: 50,
+    marginTop: -40,
   },
   row: {
     flexDirection: "row",
@@ -30,10 +37,11 @@ const styles = StyleSheet.create({
   },
   container: {
     borderRadius: 10,
+    marginTop: 46,
     backgroundColor: colors.white,
     padding: 10,
     marginVertical: 16,
-    width: width * 0.6,
+    width: width * 0.7,
     //IOS
     shadowColor: "#000",
     shadowOffset: {

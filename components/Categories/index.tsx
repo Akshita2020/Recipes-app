@@ -8,7 +8,7 @@ const Categories = ({ categories, selectedCategory, onCategoryPress }) => {
       horizontal
       data={categories}
       keyExtractor={(item) => String(item)}
-      style={{ marginRight: -32, maxWidth: "100%" }}
+      style={{ marginRight: -32, maxWidth: "100%", marginTop: 24 }}
       showsHorizontalScrollIndicator={false}
       renderItem={({ item }) => {
         const selected = selectedCategory === item;

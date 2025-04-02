@@ -20,28 +20,29 @@ const Input = ({
 }: InputProps) => {
   const renderInput = () => (
     <View style={styles.inputContainer}>
-      {showSearchIcons ? (
+      {showSearchIcons && (
         <Image
           style={styles.icon}
           source={require("../../assets/images/search.png")}
         />
-      ) : null}
+      )}
       <TextInput
         editable={!pressable}
         placeholderTextColor={colors.lightGrey}
-        style={styles.input}
+        style={[styles.input, style]} 
         placeholder={placeholder}
       />
     </View>
   );
+
   if (pressable) {
     return (
-      <Pressable onPress={onPress} style={[styles.inputContainer, style]}>
-        renderInput()
-        <Text>{placeholder}</Text>
+      <Pressable onPress={onPress} >
+        {renderInput()} 
       </Pressable>
     );
   }
+
   return renderInput();
 };
 

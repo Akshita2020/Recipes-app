@@ -49,3 +49,58 @@ Join our community of developers creating universal apps.
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
 # Recipes-app
+
+# Expo folder Structure 
+In modern React Native projects, especially those utilizing Expo and its routing conventions, organizing your folder structure is crucial for maintainability and scalability. A common approach involves placing your screens within the `app` directory to leverage Expo Router's file-based routing system. This means each screen corresponds to a file or folder within `app`, and the routing is determined by the file structure.
+
+**Folder Structure:**
+
+
+```
+AwesomeProject/
+├── app/
+│   ├── index.tsx            // Home screen
+│   ├── _layout.tsx          // Global layout configuration
+│   ├── auth/
+│   │   ├── index.tsx        // Authentication entry point
+│   │   ├── login.tsx        // Login screen
+│   │   └── signup.tsx       // Signup screen
+│   ├── profile/
+│   │   └── index.tsx        // Profile screen
+│   └── settings/
+│       └── index.tsx        // Settings screen
+├── components/
+│   ├── Button.tsx           // Reusable button component
+│   └── Card.tsx             // Reusable card component
+├── hooks/
+│   └── useAuth.ts           // Custom authentication hook
+├── api/
+│   ├── client.ts            // API client setup (e.g., Axios instance)
+│   └── auth.ts              // Authentication-related API calls
+├── assets/
+│   ├── images/
+│   └── fonts/
+├── constants/
+│   └── index.ts             // Constant values used across the app
+├── contexts/
+│   └── AuthContext.tsx      // Authentication context provider
+├── utils/
+│   └── helpers.ts           // Utility functions
+├── types/
+│   └── index.ts             // TypeScript types and interfaces
+├── app.json
+├── babel.config.js
+├── package.json
+└── tsconfig.json
+```
+
+
+**Key Points:**
+
+- **`app/` Directory:** Contains all screen components. The structure within this directory directly maps to your app's navigation paths. For instance, `app/auth/login.tsx` corresponds to the `/auth/login` route. The `_layout.tsx` file can be used to define layouts that wrap around your screens.
+
+- **Non-Routable Directories:** Folders like `components`, `hooks`, `api`, etc., are placed outside the `app` directory. These contain reusable logic and UI elements that are not directly associated with a route. This separation ensures that only the contents of the `app` directory are considered for routing, preventing unintended navigation paths.
+
+- **API Integration:** The `api/` folder manages all API-related functionalities. For example, `client.ts` can set up your API client (like configuring an Axios instance), and `auth.ts` can define functions for authentication-related API calls. This organization promotes a clear separation of concerns and makes it easier to manage API interactions.
+
+By structuring your project in this manner, you align with Expo's routing conventions while maintaining a clean and organized codebase. This setup facilitates scalability and ease of maintenance as your application grows. 

@@ -24,7 +24,7 @@ export default function Layout() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const rec = await handleRecipesFetch();
+      const rec = await handleRecipesFetch(null, 15);
       if (rec) setRecipes(rec);
       const healthyRec = await handleRecipesFetch("healthy", 5);
       setHealthyRecipes(healthyRec);

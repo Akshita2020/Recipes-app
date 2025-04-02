@@ -26,14 +26,21 @@ const Home = () => {
         horizontal
         data={healthyRecipes}
         style={{ marginHorizontal: -24, maxWidth: "100%" }}
-        keyExtractor={(item) => String(item)}
+        keyExtractor={(item) => String(item?.id)}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item, index }) => (
           <RecipeCard
             style={index === 0 ? { marginLeft: 24 } : {}}
             time={item?.cook_time_minutes}
             title={item?.name}
-            author={item?.credits?.length ? { name: item.credits[0]?.name, image: item.credits[0]?.image_url } : null}
+            author={
+              item?.credits?.length
+                ? {
+                    name: item.credits[0]?.name,
+                    image: item.credits[0]?.image_url,
+                  }
+                : null
+            }
             image={item?.thumbnail_url}
             servings={0}
             rating={item?.user_ratings?.score}
@@ -49,16 +56,25 @@ const Home = () => {
       {showList && (
         <FlatList
           horizontal
-          data={[1, 2, 3]}
+          data={recipes}
           style={{ marginHorizontal: -24, maxWidth: "100%" }}
-          keyExtractor={(item) => String(item)}
+          keyExtractor={(item) => String(item?.id)}
           showsHorizontalScrollIndicator={false}
-          renderItem={({ index }) => (
+          renderItem={({ item, index }) => (
             <Card
               style={index === 0 ? { marginLeft: 24 } : {}}
-              time="20 mins"
-              title="Steak with tomato sauce and bulgur rice."
-              image="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGZvb2R8ZW58MHx8MHx8fDA%3D"
+              servings={item?.num_servings}
+              title={item?.name}
+              author={
+                item?.credits?.length
+                  ? {
+                      name: item.credits[0]?.name,
+                      image: item.credits[0]?.image_url,
+                    }
+                  : null
+              }
+              image={item?.thumbnail_url}
+              rating={item?.user_ratings?.score}
             />
           )}
         />

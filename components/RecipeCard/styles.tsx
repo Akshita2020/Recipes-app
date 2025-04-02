@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     height: 25,
     marginRight: 8,
     borderRadius: 20,
+    backgroundColor: colors.lightGrey,
   },
   footerText: {
     color: colors.lightGrey2,
@@ -40,6 +41,7 @@ const styles = StyleSheet.create({
     width: 17,
     height: 17,
     marginRight: 8,
+    marginLeft: 56,
   },
   container: {
     borderRadius: 10,

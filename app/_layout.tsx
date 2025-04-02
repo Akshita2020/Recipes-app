@@ -9,22 +9,36 @@ interface RecipesContextType {
   recipes: any[];
   setRecipes: (recipes: any[]) => void;
 }
+interface HealthyRecipesContextType {
+  healthyRecipes: any[];
+  setHealthyRecipes: (healthyRecipes: any[]) => void;
+}
 
 export const RecipesContext = createContext<RecipesContextType | null>(null);
+export const HealthyRecipesContext =
+  createContext<HealthyRecipesContextType | null>(null);
 
 export default function Layout() {
   const [recipes, setRecipes] = React.useState<any[]>([]);
+  const [healthyRecipes, setHealthyRecipes] = React.useState<any[]>([]);
 
   useEffect(() => {
-    handleRecipesFetch();
+    const fetchData = async () => {
+      const rec = await handleRecipesFetch();
+      if (rec) setRecipes(rec);
+      const healthyRec = await handleRecipesFetch("healthy", 5);
+      setHealthyRecipes(healthyRec);
+    };
+    fetchData();
   }, []);
-  const handleRecipesFetch = async () => {
+  const handleRecipesFetch = async (tags = "", size = 5) => {
     try {
-      const recipes = await fetchRecipes();
+      const recipes = await fetchRecipes(tags, size);
       console.log(recipes.data.results);
-      setRecipes(recipes?.data?.results);
+      return recipes?.data?.results;
     } catch (error) {
       console.log("error fetching recipes", error);
+      return [];
     }
   };
 
@@ -56,35 +70,42 @@ export default function Layout() {
   };
 
   return (
-    <RecipesContext.Provider value={{ recipes, setRecipes }}>
-      <View style={{ flex: 1, backgroundColor: Theme.colors.background }}>
-        <Stack
-          screenOptions={{
-            headerTitleAlign: "center",
-            headerShadowVisible: false,
-            headerStyle: { backgroundColor: Theme.colors.background }, // Apply to header
-            headerTitleStyle: { fontWeight: "bold" },
-            contentStyle: { backgroundColor: Theme.colors.background }, // Apply to screens
-          }}
-        >
-          <Stack.Screen name="Splash/index" options={{ headerShown: false }} />
-          <Stack.Screen
-            name="Home/index"
-            options={{
-              headerTitle: "Home",
-              headerBackVisible: false,
+    <HealthyRecipesContext.Provider
+      value={{ healthyRecipes, setHealthyRecipes }}
+    >
+      <RecipesContext.Provider value={{ recipes, setRecipes }}>
+        <View style={{ flex: 1, backgroundColor: Theme.colors.background }}>
+          <Stack
+            screenOptions={{
+              headerTitleAlign: "center",
+              headerShadowVisible: false,
+              headerStyle: { backgroundColor: Theme.colors.background }, // Apply to header
+              headerTitleStyle: { fontWeight: "bold" },
+              contentStyle: { backgroundColor: Theme.colors.background }, // Apply to screens
             }}
-          />
-          <Stack.Screen
-            name="Search/index"
-            options={{
-              headerTitle: "Search",
-              headerLeft: (props) => <BackButton {...props} />,
-            }}
-          />
-        </Stack>
-      </View>
-    </RecipesContext.Provider>
+          >
+            <Stack.Screen
+              name="Splash/index"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Home/index"
+              options={{
+                headerTitle: "Home",
+                headerBackVisible: false,
+              }}
+            />
+            <Stack.Screen
+              name="Search/index"
+              options={{
+                headerTitle: "Search",
+                headerLeft: (props) => <BackButton {...props} />,
+              }}
+            />
+          </Stack>
+        </View>
+      </RecipesContext.Provider>
+    </HealthyRecipesContext.Provider>
   );
 }
 

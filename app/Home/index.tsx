@@ -7,37 +7,36 @@ import Title from "../../components/Title/index";
 import Categories from "@/components/Categories";
 import RecipeCard from "@/components/RecipeCard";
 import Card from "@/components/Card";
-import { RecipesContext } from "../_layout";
+import { HealthyRecipesContext, RecipesContext } from "../_layout";
+import { validatePathConfig } from "expo-router/build/fork/getPathFromState-forks";
 
 const Home = () => {
   const router = useRouter();
   const [showList, setShowList] = React.useState(false);
   const { recipes } = useContext(RecipesContext);
+  const { healthyRecipes } = useContext(HealthyRecipesContext);
+  console.log("healthyRecipes", healthyRecipes);
   console.log("recipes", recipes);
 
   return (
     <View style={styles.container}>
       <Input pressable onPress={() => router.push("/Search")} />
-      <Title text="Featured Recipes" />
+      <Title text="Healthy Recipes" />
       <FlatList
         horizontal
-        data={[1, 2, 3]}
+        data={healthyRecipes}
         style={{ marginHorizontal: -24, maxWidth: "100%" }}
         keyExtractor={(item) => String(item)}
         showsHorizontalScrollIndicator={false}
-        renderItem={({ index }) => (
+        renderItem={({ item, index }) => (
           <RecipeCard
             style={index === 0 ? { marginLeft: 24 } : {}}
-            time="20 mins"
-            title="Steak with tomato sauce and bulgur rice."
-            author={{
-              name: "James Milner",
-              image:
-                "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D",
-            }}
-            image={""}
+            time={item?.cook_time_minutes}
+            title={item?.name}
+            author={item?.credits?.length ? { name: item.credits[0]?.name, image: item.credits[0]?.image_url } : null}
+            image={item?.thumbnail_url}
             servings={0}
-            rating={0}
+            rating={item?.user_ratings?.score}
           />
         )}
       />

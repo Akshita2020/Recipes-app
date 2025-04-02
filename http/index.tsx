@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const getRecepieList = async (tags = null) => {
+const getRecepieList = async (tags = null, size) => {
   const options = {
     method: "GET",
     url: "https://tasty.p.rapidapi.com/recipes/list",
     params: {
       from: "0",
-      size: "20",
+      size: size || "20",
       tags,
     },
     headers: {

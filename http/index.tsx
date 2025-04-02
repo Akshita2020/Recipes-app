@@ -7,7 +7,7 @@ const getRecepieList = async (tags = null) => {
     params: {
       from: "0",
       size: "20",
-      tags: "under_30_minutes",
+      tags,
     },
     headers: {
       "x-rapidapi-key": "bc7b0b0741mshc62157f890c4c44p17ff58jsn694737ea26b5",

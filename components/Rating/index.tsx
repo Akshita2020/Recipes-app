@@ -15,6 +15,7 @@ const Rating = ({ rating }) => {
       if (Math.floor(rating) >= star) {
         return (
           <Image
+            key={star}
             source={require("../../assets/images/star.png")}
             style={styles.star}
           />
@@ -22,6 +23,7 @@ const Rating = ({ rating }) => {
       }
       return (
         <Image
+          key={star}
           style={styles.star}
           source={require("../../assets/images/emptyStar.png")}
         />

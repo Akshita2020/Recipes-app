@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, FlatList } from "react-native";
 import styles from "./styles";
 import { useRouter } from "expo-router";
@@ -7,9 +7,14 @@ import Title from "../../components/Title/index";
 import Categories from "@/components/Categories";
 import RecipeCard from "@/components/RecipeCard";
 import Card from "@/components/Card";
+import { RecipesContext } from "../_layout";
+
 const Home = () => {
   const router = useRouter();
   const [showList, setShowList] = React.useState(false);
+  const { recipes } = useContext(RecipesContext);
+  console.log("recipes", recipes);
+
   return (
     <View style={styles.container}>
       <Input pressable onPress={() => router.push("/Search")} />

@@ -3,7 +3,7 @@ import { Stack } from "expo-router";
 import { useEffect } from "react";
 import { MD3LightTheme as DefaultTheme } from "react-native-paper";
 import { BackHandler, Image, Pressable, StyleSheet, View } from "react-native";
-// import getRecepieList from "@/http";
+import fetchRecipes from "../http";
 
 interface RecipesContextType {
   recipes: any[];
@@ -14,6 +14,19 @@ export const RecipesContext = createContext<RecipesContextType | null>(null);
 
 export default function Layout() {
   const [recipes, setRecipes] = React.useState<any[]>([]);
+
+  useEffect(() => {
+    handleRecipesFetch();
+  }, []);
+  const handleRecipesFetch = async () => {
+    try {
+      const recipes = await fetchRecipes();
+      console.log(recipes.data.results);
+      setRecipes(recipes?.data?.results);
+    } catch (error) {
+      console.log("error fetching recipes", error);
+    }
+  };
 
   useEffect(() => {
     // Disable Android Hardware Back Button

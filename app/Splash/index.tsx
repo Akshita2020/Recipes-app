@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React from "react";
 import { View, Text, ImageBackground, Image } from "react-native";
 import styles from "./styles";
 import Button from "@/components/Button";
@@ -6,25 +6,9 @@ import { useRouter } from "expo-router";
 // import splash from "../../assets/images/splash.png";
 // import splash from './splash.png';
 import splash from "@/assets/images/splash.png";
-import fetchRecipes from "../../http";
-import { RecipesContext } from "../_layout";
+
 const Splash = () => {
   const router = useRouter();
-  const { setRecipes } = useContext(RecipesContext);
-
-  useEffect(() => {
-    handleRecipesFetch();
-  }, []);
-  const handleRecipesFetch = async () => {
-    try {
-      const recipes = await fetchRecipes();
-      console.log(recipes); 
-      console.log(recipes.data.results);
-      setRecipes(recipes?.data?.results);
-    } catch (error) {
-      console.log("error fetching recipes", error);
-    }
-  };
 
   return (
     <ImageBackground style={styles.background} source={splash}>

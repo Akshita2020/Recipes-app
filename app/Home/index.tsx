@@ -11,10 +11,11 @@ import { HealthyRecipesContext, RecipesContext } from "../_layout";
 
 const Home = () => {
   const router = useRouter();
+  const { recipes } = useContext(RecipesContext);
   const [showList, setShowList] = React.useState(false);
   const [tags, setTags] = React.useState([]);
   const [selectedTag, setSelectedTag] = React.useState();
-  const { recipes } = useContext(RecipesContext);
+  const [filteredRecipes, setFilteredRecipes] = React.useState(recipes);
   const { healthyRecipes } = useContext(HealthyRecipesContext);
   console.log("healthyRecipes", healthyRecipes);
   console.log("recipes", recipes);
@@ -31,6 +32,19 @@ const Home = () => {
     setTags(tagsList);
     console.log("tag:>>", tags);
   }, [recipes]);
+
+useEffect(() => {
+  if (selectedTag) {
+    const filteredRecipes = recipes?.filter((rec) => {
+      const tag = rec?.tags?.find((tag) => tag?.name === selectedTag);
+      return !!tag;
+    });
+    setFilteredRecipes(filteredRecipes);
+  } else {
+    setFilteredRecipes(recipes);
+  }
+}, [selectedTag, recipes]);
+
 
   return (
     <View style={styles.container}>
@@ -70,7 +84,7 @@ const Home = () => {
       {showList && (
         <FlatList
           horizontal
-          data={recipes}
+          data={filteredRecipes}
           style={{ marginHorizontal: -24, maxWidth: "100%" }}
           keyExtractor={(item) => String(item?.id)}
           showsHorizontalScrollIndicator={false}

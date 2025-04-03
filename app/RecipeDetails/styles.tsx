@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 24,
+    marginHorizontal: 24,
     flex: 1,
   },
   image: {
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   instructionText: {
     fontSize: 14,
     color: colors.black,
-    flex:1
+    flex: 1,
   },
 });
 

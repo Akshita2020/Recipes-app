@@ -30,7 +30,6 @@ const Input = ({
       <TextInput
         {...props}
         editable={!pressable}
-        placeholderTextColor={colors.lightGrey}
         style={[styles.input, style]}
       />
     </View>

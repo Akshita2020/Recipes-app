@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, FlatList } from "react-native";
 import styles from "./styles";
 import { RecipesContext } from "../_layout";
@@ -9,6 +9,19 @@ const Search = () => {
   const [filteredRecipes, setFilteredRecipes] = useState(recipes);
   const [keyword, setKeyword] = useState("");
   console.log("keyword:>>", keyword);
+
+  useEffect(() => {
+    if (keyword?.length> 2) {
+      const filteredItems = recipes?.filter((rec) =>
+        rec?.name?.toLowerCase()?.includes(keyword?.toLowerCase())
+      );
+      console.log("filteredItems:>>", filteredItems);
+      setFilteredRecipes(filteredRecipes);
+    } else {
+      setFilteredRecipes([]);
+    }
+  }, [keyword]);
+
   return (
     <View style={styles.container}>
       <Input autoFocus onChangeText={setKeyword} value={keyword} />

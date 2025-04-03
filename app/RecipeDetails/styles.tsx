@@ -29,7 +29,22 @@ const styles = StyleSheet.create({
   },
   value: {
     fontSize: 12,
-    color: colors.lightGrey2,
+    color: colors.black,
+  },
+  instructionRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 12,
+  },
+  index: {
+    fontSize: 20,
+    color: colors.grey2,
+    marginRight: 16,
+  },
+  instructionText: {
+    fontSize: 14,
+    color: colors.black,
+    flex:1
   },
 });
 

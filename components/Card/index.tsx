@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Image } from "react-native";
+import { Text, Image, TouchableOpacity } from "react-native";
 import styles from "./styles";
 
 export interface cardProps {
@@ -9,15 +9,16 @@ export interface cardProps {
   image?: string;
   servings?: number;
   rating?: number;
+  onPress?: () => void;
   author?: {
     name?: string;
     image?: string;
   };
 }
 
-const Card = ({ title, servings, style, image }: cardProps) => {
+const Card = ({ title, servings, style, image, onPress }: cardProps) => {
   return (
-    <View style={[styles.container, style]}>
+    <TouchableOpacity onPress={onPress} style={[styles.container, style]}>
       <Image
         style={styles.image}
         source={{
@@ -33,7 +34,7 @@ const Card = ({ title, servings, style, image }: cardProps) => {
           <Text style={styles.value}>{servings}</Text>
         </>
       ) : null}
-    </View>
+    </TouchableOpacity>
   );
 };
 

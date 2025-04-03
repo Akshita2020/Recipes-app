@@ -97,9 +97,9 @@ export default function Layout() {
               }}
             />
             <Stack.Screen
-              name="Search/index"
+              name="RecipeDetails/index"
               options={{
-                headerTitle: "Search",
+                headerTitle: "RecipeDetails",
                 headerLeft: (props) => <BackButton {...props} />,
               }}
             />

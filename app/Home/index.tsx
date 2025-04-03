@@ -13,7 +13,7 @@ const Home = () => {
   const router = useRouter();
   const [showList, setShowList] = React.useState(false);
   const [tags, setTags] = React.useState([]);
-  const [selectedTag,setSelectedTag] = React.useState()
+  const [selectedTag, setSelectedTag] = React.useState();
   const { recipes } = useContext(RecipesContext);
   const { healthyRecipes } = useContext(HealthyRecipesContext);
   console.log("healthyRecipes", healthyRecipes);
@@ -77,6 +77,7 @@ const Home = () => {
           renderItem={({ item, index }) => (
             <Card
               style={index === 0 ? { marginLeft: 24 } : {}}
+              onPress={() => router.push(`./RecipeDetails/${item}`)}
               servings={item?.num_servings}
               title={item?.name}
               author={

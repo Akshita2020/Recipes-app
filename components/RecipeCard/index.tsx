@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, TouchableOpacity } from "react-native";
 import styles from "./styles";
 import Rating from "../Rating";
 
@@ -11,6 +11,7 @@ interface RecipeProps {
   rating: number;
   time: string;
   style?: object;
+  onPress?: () => void;
 }
 
 const RecipeCard = ({
@@ -20,9 +21,10 @@ const RecipeCard = ({
   rating,
   time,
   style,
+  onPress,
 }: RecipeProps) => {
   return (
-    <View style={[styles.container, style]}>
+    <TouchableOpacity onPress={onPress} style={[styles.container, style]}>
       <View style={styles.row}>
         <View style={{ flex: 1 }}>
           <Text numberOfLines={1} style={styles.title}>
@@ -45,23 +47,23 @@ const RecipeCard = ({
             <Image style={styles.authorImage} source={{ uri: author?.image }} />
             <Text style={styles.footerText}>{author?.name}</Text>
           </View>
-        ) : 
+        ) : (
           <View />
-        }
-    
-      {time ? (
-        <View style={styles.row}>
-          <Image
-            style={styles.timerIcon}
-            source={require("../../assets/images/timer.png")}
-          />
-          <Text style={styles.footerText}>{`${time} mins`}</Text>
-        </View>
-      ) : (
-        <View />
-      )}
+        )}
+
+        {time ? (
+          <View style={styles.row}>
+            <Image
+              style={styles.timerIcon}
+              source={require("../../assets/images/timer.png")}
+            />
+            <Text style={styles.footerText}>{`${time} mins`}</Text>
+          </View>
+        ) : (
+          <View />
+        )}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

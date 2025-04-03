@@ -1,7 +1,6 @@
 import React from "react";
 import { TextInput, Image, View, Pressable } from "react-native";
 import styles from "./styles";
-import colors from "@/constants/colors";
 
 interface InputProps {
   showSearchIcons?: boolean;
@@ -10,6 +9,8 @@ interface InputProps {
   style?: object;
   props?: object;
   autoFocus?: boolean;
+  onChangeText?: (value:string) => void;
+  value?: string;
 }
 
 const Input = ({

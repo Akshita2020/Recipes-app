@@ -6,7 +6,7 @@ import Input from "../../components/Input/index";
 const Search = () => {
   return (
     <View style={styles.container}>
-      <Input />
+      <Input autoFocus />
     </View>
   );
 };

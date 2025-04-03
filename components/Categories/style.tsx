@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     paddingHorizontal: 10,
     padding: 8,
+    textTransform: "capitalize",
   },
   selectedItem: {
     color: colors.white,

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { View, FlatList } from "react-native";
 import styles from "./styles";
 import { useRouter } from "expo-router";
@@ -8,15 +8,29 @@ import Categories from "@/components/Categories";
 import RecipeCard from "@/components/RecipeCard";
 import Card from "@/components/Card";
 import { HealthyRecipesContext, RecipesContext } from "../_layout";
-import { validatePathConfig } from "expo-router/build/fork/getPathFromState-forks";
 
 const Home = () => {
   const router = useRouter();
   const [showList, setShowList] = React.useState(false);
+  const [tags, setTags] = React.useState([]);
+  const [selectedTag,setSelectedTag] = React.useState()
   const { recipes } = useContext(RecipesContext);
   const { healthyRecipes } = useContext(HealthyRecipesContext);
   console.log("healthyRecipes", healthyRecipes);
   console.log("recipes", recipes);
+
+  useEffect(() => {
+    const tagsList = [];
+    recipes?.forEach((recipe) => {
+      recipe?.tags?.forEach((tag) => {
+        if (!tagsList?.includes(tag?.name)) {
+          tagsList?.push(tag);
+        }
+      });
+    });
+    setTags(tagsList);
+    console.log("tag:>>", tags);
+  }, [recipes]);
 
   return (
     <View style={styles.container}>
@@ -49,9 +63,9 @@ const Home = () => {
       />
 
       <Categories
-        categories={["All", "Trending"]}
-        selectedCategory="All"
-        onCategoryPress={() => setShowList(true)}
+        categories={tags}
+        selectedCategory={selectedTag}
+        onCategoryPress={setSelectedTag}
       />
       {showList && (
         <FlatList

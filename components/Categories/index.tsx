@@ -12,6 +12,7 @@ const Categories = ({ categories, selectedCategory, onCategoryPress }) => {
       showsHorizontalScrollIndicator={false}
       renderItem={({ item }) => {
         const selected = selectedCategory === item;
+        const displayName = item?.replace('_',' ')
         return (
           <TouchableOpacity
             onPress={() => onCategoryPress(item)}
@@ -21,7 +22,7 @@ const Categories = ({ categories, selectedCategory, onCategoryPress }) => {
             ]}
           >
             <Text style={[styles.item, selected ? styles.selectedItem : {}]}>
-              {item}
+              {displayName}
             </Text>
           </TouchableOpacity>
         );

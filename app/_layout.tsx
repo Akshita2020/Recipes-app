@@ -33,6 +33,7 @@ export default function Layout() {
   }, []);
   const handleRecipesFetch = async (tags = "", size = 5) => {
     try {
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       const recipes = await fetchRecipes(tags, size);
       console.log(recipes.data.results);
       return recipes?.data?.results;

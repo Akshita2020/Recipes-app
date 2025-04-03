@@ -6,7 +6,7 @@ import Input from "../../components/Input/index";
 import Card from "../../components/Card/index";
 const Search = () => {
   const { recipes } = useContext(RecipesContext);
-  const [filteredRecipes, setFilteredRecipes] = useState(recipes);
+  const [filteredRecipes, setFilteredRecipes] = useState([]);
   const [keyword, setKeyword] = useState("");
   console.log("keyword:>>", keyword);
 
@@ -26,6 +26,7 @@ const Search = () => {
     <View style={styles.container}>
       <Input autoFocus onChangeText={setKeyword} value={keyword} />
       <FlatList
+      style={{flexGrow:1 }}
         data={filteredRecipes}
         keyExtractor={(item) => String(item?.id)}
         numColumns={2}
